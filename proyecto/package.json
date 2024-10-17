@@ -1,0 +1,21 @@
+{
+  "name": "proyecto_negocios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "connect-session-sequelize": "^7.1.7",
+    "dateformat": "^5.0.3",
+    "express": "^4.21.1",
+    "express-fileupload": "^1.5.1",
+    "hbs": "^4.2.0",
+    "mssql": "^11.0.1"
+  }
+}
