@@ -4,7 +4,7 @@ const path=require('path');
 const fileUpload = require('express-fileupload');
 
 const app=express();
-const init = require('./config/sesion_seq');
+// const init = require('./config/sesion_seq');
 
 const port=process.env.PORT || 3000
 
@@ -25,8 +25,7 @@ app.use(fileUpload({
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'./assets')));
-app.use('/producto',express.static(path.join(__dirname,'./Productos')));
-app.use(init())
+// app.use(init())
 app.use(require('./routes/rt_index'))
 
 
