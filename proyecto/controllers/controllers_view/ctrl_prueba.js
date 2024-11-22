@@ -1,0 +1,1 @@
+//Envia los datos a la vista desde la base de datos

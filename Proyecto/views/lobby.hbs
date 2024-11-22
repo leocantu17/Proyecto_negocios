@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/lobby.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Inicio</title>
+</head>
+
+<body>
+    <div id="contenedor">
+        {{> barradenavegacion}}
+        <div id="informacion">
+            <h3>Descripción del programa</h3>
+            <p>El propósito de "Crecer y Sanar" es proporcionar información sobre los diversos trastornos alimentarios,
+                empleando como herramienta principal un juego interactivo que permitirá ilustrar el recorrido de una
+                persona afectada por alguno de estos trastornos.</p>
+            <p>Asimismo, se ofrecerán recursos de apoyo y herramientas útiles tanto para las personas que padecen
+                un trastorno alimentario, como para aquellos que conviven con ellas o que pudieran estar en riesgo
+                de desarrollar dichos trastornos.</p>
+            </p>
+            <div id="descripcion">
+                <img src="../img/info1.png" alt="info1">
+                <div id="texto">
+                    <h3>¿Qué es un transtorno alimentario?</h3>
+                    <p>Los trastornos alimentarios son enfermedades graves que afectan tanto la salud
+                        física como la mental. Estas afecciones incluyen problemas en la forma de pensar
+                        sobre la comida, la alimentación, el peso y la figura, así como en los comportamientos
+                        alimentarios. Estos síntomas pueden afectar tu salud, tus emociones y tu capacidad
+                        para desenvolverte en ámbitos importantes de la vida.</p>
+                    <p>Si no se tratan de manera eficaz, los trastornos alimentarios pueden convertirse
+                        en problemas crónicos y, en algunos casos, pueden causar la muerte. Los trastornos
+                        alimentarios más frecuentes son la anorexia, la bulimia y el trastorno alimentario
+                        compulsivo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="open-chat">💬</button>
+    <div id="chat-box">
+        <header>
+            Chat de Voz - Gemini
+            <button id="close-chat">✖</button>
+        </header>
+        <div id="chat">
+            <div id="chat-content">
+                <p id="respuesta"></p>
+            </div>
+            <div id="message-box">
+                <input type="text" id="text-input" placeholder="Escribe tu mensaje...">
+                <button id="send-button" onclick="enviarConsulta()">Enviar</button>
+                <button id="mic-button">🎤</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/lobby.js"></script>
+</body>
+
+</html>

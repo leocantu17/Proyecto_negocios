@@ -1,0 +1,25 @@
+/* Sección del juego */
+#juego {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Lienzo del juego */
+#lienzo {
+    border: 2px solid #81C7B6; /* Borde menta */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    width: 1000px;
+    height: 700px;
+}
+
+@media (max-height: 768px) {
+    #lienzo{
+        width: 900px;
+        height: 600px;
+    }
+}

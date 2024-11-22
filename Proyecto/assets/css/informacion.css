@@ -1,0 +1,137 @@
+/* Sección de información */
+#informacion {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #333;
+    font-family: Arial, sans-serif;
+    text-align: justify;
+}
+
+#informacion h3 {
+    font-size: 22px;
+    font-style: italic;
+}
+
+#navegacion li {
+    margin-left: 20px;
+}
+
+#navegacion a {
+    text-decoration: none;
+    color: #81C7B6;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#navegacion a:hover {
+    background-color: #68A89D;
+    /* Menta oscuro */
+}
+
+#general {
+    width: 100%;
+}
+
+#general p {
+    padding: 0 40px;
+}
+
+#general h4 {
+    font-size: 20px;
+    padding-left: 40px;
+}
+
+#infografia {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#infografia img {
+    width: 600px;
+    height: auto;
+}
+
+#tipos {
+    width: 100%;
+}
+
+#tipos p {
+    padding: 0 40px;
+}
+
+#tipos h4 {
+    font-size: 20px;
+    padding-left: 40px;
+}
+
+#tipos ul{
+    padding-left: 60px;
+    padding-right: 40px;
+}
+
+#tipos h5{
+    font-size: 18px;
+    padding-left: 40px;
+}
+
+#causas {
+    width: 100%;
+}
+
+#causas p {
+    padding: 0 40px;
+}
+
+#causas h4 {
+    font-size: 20px;
+    padding-left: 40px;
+}
+
+#tratamiento {
+    width: 100%;
+}
+
+#tratamiento p {
+    padding: 0 40px;
+}
+
+#tratamiento h4 {
+    font-size: 20px;
+    padding-left: 40px;
+}
+
+#tratamiento h5{
+    font-size: 18px;
+    padding-left: 40px;
+}
+
+#tratamiento ul {
+    padding-left: 60px;
+    padding-right: 40px;
+}
+
+#contactos p {
+    padding: 0 40px;
+}
+
+#contactos a {
+    text-decoration: none;
+    color: #81C7B6;
+    font-weight: bold;
+    padding: 0px 40px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#contactos a:hover {
+    background-color: #68A89D;
+    /* Menta oscuro */
+}

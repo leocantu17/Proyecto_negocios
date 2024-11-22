@@ -1,0 +1,41 @@
+/* Contenedor de capítulos en fila horizontal */
+#capitulos {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+    
+    margin-top: 100px;
+}
+
+/* Estilo para cada capítulo */
+#capitulos > div {
+    flex: 1;
+    max-width: 200px; /* Ancho máximo opcional para cada capítulo */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin: 0 10px; /* Espacio entre los capítulos */
+}
+
+#capitulos > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Texto y estilo de imagen de cada capítulo */
+#capitulos > div p {
+    font-weight: bold;
+    color: #81C7B6;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#capitulos > div img {
+    max-width: 80px;
+    margin-top: 10px;
+}
