@@ -10,7 +10,7 @@ class InicioScene extends Phaser.Scene {
 
     create() {
         //Fondo del juego
-        this.add.image(400, 300, 'fondo').setOrigin(0);
+        this.add.image(0, 0, 'fondo').setOrigin(0);
         //Texto del título
         this.add.text(400, 150, 'Mi juego', {font: '40px Arial', fill: '#ffffff'}).setOrigin(0.5);
         //Botón para iniciar el juego

@@ -8,10 +8,6 @@ router.get('/',(req,res)=>{
     res.render('lobby')
 })
 
-router.get('/capitulos',(req,res)=>{
-    res.render('capitulos')
-})
-
 router.get('/juego',(req,res)=>{
     res.render('juego')
 })
