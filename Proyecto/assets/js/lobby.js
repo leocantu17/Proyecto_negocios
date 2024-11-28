@@ -28,6 +28,8 @@ micButton.addEventListener('click', () => {
 recognition.onresult = (event) => {
     const voiceInput = event.results[0][0].transcript;
     textInput.value = voiceInput;
+
+    enviarConsulta();
 };
 
 // Enviar solicitud
