@@ -42,6 +42,7 @@ textInput.addEventListener('keydown', (event) => {
 // Enviar solicitud
 async function enviarConsulta() {
     const consulta = textInput.value;
+    textInput.value = '';
     respuesta.innerHTML += '<b>Tu: </b>' + consulta + '<br>';
     console.log(consulta);
     try {
