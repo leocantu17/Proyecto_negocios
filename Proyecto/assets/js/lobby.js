@@ -32,27 +32,36 @@ recognition.onresult = (event) => {
     enviarConsulta();
 };
 
+// Detectar Enter en el campo de texto
+textInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        enviarConsulta();
+    }
+});
+
 // Enviar solicitud
 async function enviarConsulta() {
     const consulta = textInput.value;
     respuesta.innerHTML += '<b>Tu: </b>' + consulta + '<br>';
-
+    console.log(consulta);
     try {
         const response = await fetch('http://localhost:3000/consulta', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ consulta })
+            body: JSON.stringify({
+                consulta: consulta
+            })
         });
 
         const data = await response.json();
-        if (data.response === undefined) {
+        if (data.respuesta === undefined) {
             respuesta.innerHTML += 'Gemini no puede responder a tu consulta.<br>';
             textInput.value = '';
             return;
         } else {
-            respuesta.innerHTML += "<b>Gemini: </b>" + data.response + '<br>';
+            respuesta.innerHTML += "<b>Gemini: </b>" + data.respuesta + '<br>';
             textInput.value = '';
         }
     } catch (error) {
