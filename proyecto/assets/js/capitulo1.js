@@ -1,6 +1,6 @@
 class Capitulo1 extends Phaser.Scene {
     constructor() {
-        super({key: 'Capitulo1'});
+        super({ key: 'Capitulo1' });
     }
 
     preload() {
@@ -16,16 +16,19 @@ class Capitulo1 extends Phaser.Scene {
 
 
         // Añadir texto principal
-        const storyText = this.add.text(400, 200, texts[currentTextIndex], {
-            font: '24px Arial',
+        const storyText = this.add.text(50, 370, texts[currentTextIndex], {
+            font: '16px Arial',
             fill: '#ffffff',
+            aling: 'justify',
             wordWrap: { width: 700 },
-            align: 'center'
-        }).setOrigin(0.5);
+        }).setOrigin(0.0);
 
-        // Detectar la barra espaciadora
-        this.input.keyboard.on('keydown-SPACE', () => {
-            // Cambiar el texto si hay más disponible
+        // Manejo del teclado y el clic del mouse
+        this.input.keyboard.on('keydown-SPACE', handleInput, this);
+        this.input.on('pointerdown', handleInput, this);
+
+        // Función que maneja ambos eventos
+        function handleInput() {
             if (currentTextIndex < texts.length - 1) {
                 currentTextIndex++;
                 storyText.setText(texts[currentTextIndex]);
@@ -33,16 +36,17 @@ class Capitulo1 extends Phaser.Scene {
                 // Opcional: Mensaje final o transición
                 storyText.setText("Has terminado este capítulo.");
             }
-        });
+        }
+
 
         // Botón para regresar al menú
-        const regresarMenu = this.add.text(400, 450, 'Volver al menú', {
-            font: 'italic 30px Arial',
+        const regresarMenu = this.add.text(700, 30, 'Volver al menú', {
+            font: 'italic 24px Arial',
             fill: '#ffffff',
             backgroundColor: '#000'
         })
-        .setOrigin(0.5)
-        .setInteractive();
+            .setOrigin(0.5)
+            .setInteractive();
 
         regresarMenu.on('pointerdown', () => {
             this.scene.start('MenuScene'); // Cambiar a la escena del menú
