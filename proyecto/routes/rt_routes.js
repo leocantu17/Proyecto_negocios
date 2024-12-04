@@ -4,6 +4,7 @@ const router = Router();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI('AIzaSyCBd9WWlSkq420LI9h0QbI4tqodryOEyLg');
 
+//Ruta para realizar la conxion con IA
 router.post('/consulta', async (req, res) => {
     try {
         const { consulta } = req.body;
@@ -29,5 +30,6 @@ router.post('/consulta', async (req, res) => {
     }
 });
 
+//ruta para el JSON
 
 module.exports = router
