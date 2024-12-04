@@ -5,7 +5,6 @@ class InicioScene extends Phaser.Scene {
 
     preload() {
         this.load.image('fondo', '../img/inicioFondo.png');
-        //this.load.iamge('icono', '../img/icono.gif');
         this.load.image('boton', '../img/boton.png');
     }
 
@@ -20,8 +19,6 @@ class InicioScene extends Phaser.Scene {
         boton.on('pointerdown', () => {
             this.scene.start('MenuScene');
         });
-        //Icono 
-        //this.add.image(400, 450, 'icono').setOrigin(0);
     }
 }
 
