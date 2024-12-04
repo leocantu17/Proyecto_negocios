@@ -17,14 +17,14 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-/*Tamaños del lienzo
-Entre 2
-width: 400
-height: 260
+/*Tamaños del lienzo     Menu de capitulos
+Entre 2                  Puntos medios de width
+width: 400               134 + 400 + 534
+height: 260              200 + 600
 
-Entre 3
-width: 266 Sobran 2
-height: 173 Sobra 1
+Entre 3                  Puntos medios de height
+width: 266 Sobran 2      130
+height: 173 Sobra 1      390
 
 Entre 4
 width: 200
