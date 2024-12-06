@@ -4,16 +4,16 @@ class MenuScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('fondo', '../img/inicioFondo.png');
-        this.load.image('capitulo', '../img/pruebacapitulos.png');
+        this.load.image('fondoMenu', '../img/menuFondo.png');
+        this.load.image('capitulo', '../img/pruCap240.png');
     }
 
     create() {
         //Fondo del juego
-        this.add.image(0, 0, 'fondo').setOrigin(0);
+        this.add.image(0, 0, 'fondoMenu').setOrigin(0);
 
         //Texto del título
-        this.add.text(400,50, 'Selecciona un capitulo', {
+        this.add.text(400,60, 'Selecciona un capitulo', {
             font: 'italic 40px Arial',
             fill: 'black'
         }).setOrigin(0.5);
@@ -23,8 +23,8 @@ class MenuScene extends Phaser.Scene {
             {name: 'Capítulo 1:', subName: 'Inicio', scene: 'Capitulo1', coor: {x: 134, y: 220}},
             {name: 'Capítulo 2:', subName: 'Desafios', scene: 'Capitulo2', coor: {x: 400, y: 220}},
             {name: 'Capítulo 3:', subName: 'Consecuencias', scene: 'Capitulo3', coor: {x: 666, y: 220}},
-            {name: 'Capítulo 4:', subName: 'Enfrentamiento', scene: 'Capitulo4', coor: {x: 200, y: 430}},
-            {name: 'Capítulo 5:', subName: 'Resolución', scene: 'Capitulo5', coor: {x: 600, y: 430}}
+            {name: 'Capítulo 4:', subName: 'Enfrentamiento', scene: 'Capitulo4', coor: {x: 265, y: 420}},
+            {name: 'Capítulo 5:', subName: 'Resolución', scene: 'Capitulo5', coor: {x: 535, y: 420}}
         ];
         
         //Creación de los botones para los capitulos
