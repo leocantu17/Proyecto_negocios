@@ -5,7 +5,11 @@ class MenuScene extends Phaser.Scene {
 
     preload() {
         this.load.image('fondoMenu', '../img/menuFondo.png');
-        this.load.image('capitulo', '../img/pruCap240.png');
+        this.load.image('capitulo1', '../img/capitulo1.png');
+        this.load.image('capitulo2', '../img/capitulo2.png');
+        this.load.image('capitulo3', '../img/capitulo3.png');
+        this.load.image('capitulo4', '../img/capitulo4.png');
+        this.load.image('capitulo5', '../img/capitulo5.png');
     }
 
     create() {
@@ -21,15 +25,15 @@ class MenuScene extends Phaser.Scene {
         //Botones para los capitulos
         const capitulos = [
             {name: 'Capítulo 1:', subName: 'Inicio', scene: 'Capitulo1', coor: {x: 134, y: 220}},
-            {name: 'Capítulo 2:', subName: 'Desafios', scene: 'Capitulo2', coor: {x: 400, y: 220}},
-            {name: 'Capítulo 3:', subName: 'Consecuencias', scene: 'Capitulo3', coor: {x: 666, y: 220}},
-            {name: 'Capítulo 4:', subName: 'Enfrentamiento', scene: 'Capitulo4', coor: {x: 265, y: 420}},
-            {name: 'Capítulo 5:', subName: 'Resolución', scene: 'Capitulo5', coor: {x: 535, y: 420}}
+            {name: 'Capítulo 2:', subName: 'Consecuencias', scene: 'Capitulo2', coor: {x: 400, y: 220}},
+            {name: 'Capítulo 3:', subName: 'Búsqueda', scene: 'Capitulo3', coor: {x: 666, y: 220}},
+            {name: 'Capítulo 4:', subName: 'Recuperación', scene: 'Capitulo4', coor: {x: 265, y: 420}},
+            {name: 'Capítulo 5:', subName: 'Final', scene: 'Capitulo5', coor: {x: 535, y: 420}}
         ];
         
         //Creación de los botones para los capitulos
         capitulos.forEach((capitulo, index) => {
-            const boton = this.add.image(capitulo.coor.x, capitulo.coor.y, 'capitulo')
+            const boton = this.add.image(capitulo.coor.x, capitulo.coor.y, `capitulo${index + 1}`)
                 .setInteractive()
                 .setScale(0.5);
 
