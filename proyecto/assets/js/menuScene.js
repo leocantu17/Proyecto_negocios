@@ -28,7 +28,7 @@ class MenuScene extends Phaser.Scene {
             {name: 'Capítulo 2:', subName: 'Consecuencias', scene: 'Capitulo2', coor: {x: 400, y: 220}},
             {name: 'Capítulo 3:', subName: 'Búsqueda', scene: 'Capitulo3', coor: {x: 666, y: 220}},
             {name: 'Capítulo 4:', subName: 'Recuperación', scene: 'Capitulo4', coor: {x: 265, y: 420}},
-            {name: 'Capítulo 5:', subName: 'Final', scene: 'Capitulo5', coor: {x: 535, y: 420}}
+            {name: 'Capítulo 5:', subName: 'Final del camino', scene: 'Capitulo5', coor: {x: 535, y: 420}}
         ];
         
         //Creación de los botones para los capitulos

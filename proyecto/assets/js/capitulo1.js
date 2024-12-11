@@ -10,6 +10,9 @@ class Capitulo1 extends Phaser.Scene {
         this.load.image('titulo', '../img/titulos.png');
         this.load.image('patio', '../img/patio.png');
         this.load.image('cafeteria', '../img/cafeteria.png');
+        this.load.image('apagado', '../img/apagado.png');
+        this.load.image('encendido', '../img/encendido.png');
+        this.load.image('flecha', '../img/flecha.png');
     }
 
     create() {
@@ -36,17 +39,16 @@ class Capitulo1 extends Phaser.Scene {
             this.leerEnVozAlta(texts[currentTextIndex]);
 
             // Botón para silenciar la voz
-            this.silenciarButton = this.add.text(700, 500, 'Silenciar voz', {
-                font: 'italic 20px Arial',
-                fill: '#ffffff',
-                backgroundColor: '#ff0000',
-            })
+            this.silenciarButton = this.add.image(740, 470, 'encendido')
                 .setOrigin(0.5)
-                .setInteractive();
+                .setInteractive()
+                .on('pointerdown', () => this.toggleSpeech());
 
-            this.silenciarButton.on('pointerdown', () => {
-                this.toggleSpeech(); // Alterna el estado de lectura en voz alta
-            });
+            // Botón para regresar al menú
+            const regresarMenu = this.add.image(740, 50, 'flecha')
+                .setOrigin(0.5)
+                .setInteractive()
+                .on('pointerdown', () => this.scene.start('MenuScene'));
 
             // Agregar eventos de entrada
             this.input.keyboard.on('keydown-SPACE', handleInput, this);
@@ -57,7 +59,7 @@ class Capitulo1 extends Phaser.Scene {
                     currentTextIndex++;
 
                     // Cambiar fondo según el índice
-                    if (currentTextIndex > 3 && currentTextIndex < 9) {
+                    if (currentTextIndex >= 4 && currentTextIndex <= 8) {
                         background.setTexture('patio');
 
                         storyText.setStyle({
@@ -68,6 +70,23 @@ class Capitulo1 extends Phaser.Scene {
                         });
                         storyText.setOrigin(0);
                         storyText.setPosition(50, 340);
+
+                        // Mostrar botón de regresar al menú
+                        regresarMenu.setVisible(true);
+                    } else if (currentTextIndex >= 10 && currentTextIndex <= 17 || currentTextIndex >= 19 && currentTextIndex <= 29) {
+                        background.setTexture('cafeteria');
+
+                        storyText.setStyle({
+                            font: '16px Arial',
+                            fill: 'black',
+                            align: 'justify',
+                            wordWrap: { width: 700 },
+                        });
+                        storyText.setOrigin(0);
+                        storyText.setPosition(50, 340);
+
+                        // Mostrar botón de regresar al menú
+                        regresarMenu.setVisible(true);
                     } else {
                         background.setTexture('titulo');
 
@@ -78,6 +97,9 @@ class Capitulo1 extends Phaser.Scene {
                         });
                         storyText.setOrigin(0.5);
                         storyText.setPosition(400, 240);
+
+                        // Mostrar botón de regresar al menú
+                        regresarMenu.setVisible(true);
                     }
 
                     // Actualizar texto
@@ -88,23 +110,22 @@ class Capitulo1 extends Phaser.Scene {
                         this.leerEnVozAlta(texts[currentTextIndex]);
                     }
                 } else {
-                    // Opcional: Mensaje final o transición
-                    storyText.setText("Has terminado este capítulo.");
+                    background.setTexture('titulo');
+                    storyText.setText("Presiona para regresar al menú.")
+                        .setStyle({
+                            font: 'italic 20px Arial',
+                            fill: 'black',
+                            align: 'center',
+                        })
+                        .setOrigin(0.5)
+                        .setPosition(400, 240)
+                        .setInteractive()
+                        .on('pointerdown', () =>this.scene.start('MenuScene'));
+
+                    // Mostrar botón de regresar al menú
+                    regresarMenu.setVisible(false);
                 }
             }
-        });
-
-        // Botón para regresar al menú
-        const regresarMenu = this.add.text(700, 30, 'Volver al menú', {
-            font: 'italic 24px Arial',
-            fill: '#ffffff',
-            backgroundColor: '#000'
-        })
-            .setOrigin(0.5)
-            .setInteractive();
-
-        regresarMenu.on('pointerdown', () => {
-            this.scene.start('MenuScene'); // Cambiar a la escena del menú
         });
     }
 
@@ -121,10 +142,10 @@ class Capitulo1 extends Phaser.Scene {
     // Función para alternar la lectura en voz alta
     toggleSpeech() {
         this.speechEnabled = !this.speechEnabled;
-    
+
         // Cambiar el texto del botón de silenciar
-        this.silenciarButton.setText(this.speechEnabled ? 'Silenciar voz' : 'Activar voz');
-    
+        this.silenciarButton.setTexture(this.speechEnabled ? 'encendido' : 'apagado');
+
         // Detener la lectura si está activada
         if (!this.speechEnabled && speechSynthesis.speaking) {
             speechSynthesis.cancel(); // Detener cualquier lectura
