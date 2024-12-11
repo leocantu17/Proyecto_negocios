@@ -152,3 +152,25 @@
     color:red;
     font-weight: bold;
 }
+
+.p-error{
+    color:red;
+}
+
+/* Estilo para el botón de recitar */
+.recitar-boton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    margin-left: auto; 
+}
+
+.recitar-boton:hover {
+    transform: scale(1.2);
+}
+
+/* Contenedor de respuesta */
+.respuesta-container {
+    display: block;
+    margin-bottom: 10px;
+}

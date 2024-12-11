@@ -23,18 +23,17 @@ if (!SpeechRecognition) {
     respuesta.innerHTML += '<p class="error">Lo siento, tu navegador no es compatible con el ingreso de voz.<br> Usa los navegadores Chrome o Edge.</p>';
 } else {
     const recognition = new SpeechRecognition();
-    
+
     recognition.onresult = (event) => {
         const voiceInput = event.results[0][0].transcript;
         textInput.value = voiceInput;
-    
         enviarConsulta();
     };
-}
 
-micButton.addEventListener('click', () => {
-    recognition.start();
-});
+    micButton.addEventListener('click', () => {
+        recognition.start();
+    });
+}
 
 // Detectar Enter en el campo de texto
 textInput.addEventListener('keydown', (event) => {
@@ -62,15 +61,44 @@ async function enviarConsulta() {
 
         const data = await response.json();
         if (data.respuesta === undefined) {
-            respuesta.innerHTML += 'Gemini no puede responder a tu consulta.<br>';
+            respuesta.innerHTML += '<p class="p-error">Gemini no puede responder a tu consulta.</p>';
             textInput.value = '';
             return;
         } else {
-            respuesta.innerHTML += "<b>Gemini: </b>" + data.respuesta + '<br>';
+            const geminiRespuesta = data.respuesta;
+
+            // Crear contenedor para la respuesta
+            const respuestaContainer = document.createElement('div');
+            respuestaContainer.classList.add('respuesta-container');
+
+            // Crear el texto de la respuesta
+            const respuestaTexto = document.createElement('p');
+            respuestaTexto.innerHTML = "<b>Gemini: </b>" + data.respuesta;
+
+            // Crear el botón de recitar
+            const recitar = document.createElement('button');
+            recitar.classList.add('recitar-boton');
+            recitar.textContent = "🔊";
+            recitar.addEventListener('click', () => recitarTexto(geminiRespuesta));
+
+            // Añadir texto y botón al contenedor
+            respuestaContainer.appendChild(respuestaTexto);
+            respuestaContainer.appendChild(recitar);
+
+            // Añadir el contenedor al chat
+            document.getElementById('respuesta').appendChild(respuestaContainer);
+
+            // Limpiar campo de texto
             textInput.value = '';
         }
     } catch (error) {
         console.error('Error:', error);
         respuesta.innerHTML += 'Hubo un error al procesar la consulta <br>';
     }
+}
+
+function recitarTexto(texto) {
+    const utterance = new SpeechSynthesisUtterance(texto);
+    utterance.lang = 'es-ES';
+    speechSynthesis.speak(utterance);
 }
