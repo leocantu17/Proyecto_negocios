@@ -19,22 +19,23 @@ closeChat.addEventListener('click', () => {
 
 // Reconocimiento de voz
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-if (!SpeechRecognition) {
+if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.lang = "es-ES";
+
+    recognition.onresult = (event) => {
+        const voiceInput = event.results[0][0].transcript;
+        textInput.value = voiceInput;
+        enviarConsulta();
+    };
+
+    micButton.addEventListener('click', () => {
+        recognition.start();
+        respuesta.innerHTML += '<b>Escuchando...</b><br>';
+    });
+} else {
     respuesta.innerHTML += '<p class="error">Lo siento, tu navegador no es compatible con el ingreso de voz.<br> Usa los navegadores Chrome o Edge.</p>';
-}
-const recognition = new SpeechRecognition();
-
-recognition.onresult = (event) => {
-    console.log("si llego")
-    const voiceInput = event.results[0][0].transcript;
-    textInput.value = voiceInput;
-    enviarConsulta();
-};
-
-micButton.addEventListener('click', () => {
-    console.log("ggg")
-    recognition.start();
-});
+} 
 
 // Detectar Enter en el campo de texto
 textInput.addEventListener('keydown', (event) => {
@@ -48,6 +49,7 @@ async function enviarConsulta() {
     const consulta = textInput.value;
     textInput.value = '';
     respuesta.innerHTML += '<b>Tu: </b>' + consulta + '<br>';
+    respuesta.innerHTML += '<b>Esperando respuesta...</b><br>';
     console.log(consulta);
     try {
         const response = await fetch('http://localhost:3000/consulta', {
@@ -88,6 +90,9 @@ async function enviarConsulta() {
 
             // Añadir el contenedor al chat
             document.getElementById('respuesta').appendChild(respuestaContainer);
+
+            // Desplazarse al final del chat
+            respuestaContainer.scrollIntoView({ behavior: 'smooth' });
 
             // Limpiar campo de texto
             textInput.value = '';

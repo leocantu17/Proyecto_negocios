@@ -72,3 +72,139 @@ body {
     width: 60px;
     height: 60px;
 }
+
+/* Botón para abrir el chat */
+#open-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #81C7B6;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#open-chat:hover {
+    background-color: #68A89D;
+}
+
+/* Ventana de chat */
+#chat-box {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Oculta inicialmente */
+    width: 400px;
+    height: 94%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    transition: right 0.3s ease;
+}
+
+#chat-box header {
+    position:fixed;
+    top:0;
+    width: 400px;
+    z-index: 999;
+    background-color: #81C7B6;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#chat-content {
+    padding: 25px;
+    font-size: 16px;
+    color: #333;
+    font-family: Arial, sans-serif;
+    text-align: justify;
+    padding-top: 70px;
+}
+
+#chat {
+    width: 100%;
+    
+}
+
+#close-chat {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#message-box {
+    display: flex;
+    position: fixed;
+    bottom: 0px;
+    width: 400px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#message-box input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+#message-box button {
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #81C7B6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#message-box button:hover {
+    background-color: #68A89D;
+}
+
+#chat {
+    width: 100%;
+    height: 100%;
+}
+
+.error{
+    color:red;
+    font-weight: bold;
+}
+
+.p-error{
+    color:red;
+}
+
+/* Estilo para el botón de recitar */
+.recitar-boton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    margin-left: auto; 
+}
+
+.recitar-boton:hover {
+    transform: scale(1.2);
+}
+
+/* Contenedor de respuesta */
+.respuesta-container {
+    display: block;
+    margin-bottom: 10px;
+}

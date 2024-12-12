@@ -12,8 +12,11 @@ router.post('/consulta', async (req, res) => {
         // Modelo generativo
         const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
+        //Contexto a la consulta
+        const consultaConContexto = `Responde en español: ${consulta}`;
+
         // Generar respuesta
-        const result = await model.generateContent(consulta);
+        const result = await model.generateContent(consultaConContexto);
         const response = await result.response;
         const text = response.text();
 
