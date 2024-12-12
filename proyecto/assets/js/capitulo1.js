@@ -48,7 +48,10 @@ class Capitulo1 extends Phaser.Scene {
             const regresarMenu = this.add.image(740, 50, 'flecha')
                 .setOrigin(0.5)
                 .setInteractive()
-                .on('pointerdown', () => this.scene.start('MenuScene'));
+                .on('pointerdown', () => {
+                    this.scene.start('MenuScene');
+                    speechSynthesis.cancel();
+                });
 
             // Agregar eventos de entrada
             this.input.keyboard.on('keydown-SPACE', handleInput, this);
@@ -57,6 +60,8 @@ class Capitulo1 extends Phaser.Scene {
             function handleInput() {
                 if (currentTextIndex < texts.length - 1) {
                     currentTextIndex++;
+
+                    this.leerEnVozAlta(texts[currentTextIndex]);
 
                     // Cambiar fondo según el índice
                     if (currentTextIndex >= 4 && currentTextIndex <= 8) {
@@ -105,10 +110,8 @@ class Capitulo1 extends Phaser.Scene {
                     // Actualizar texto
                     storyText.setText(texts[currentTextIndex]);
 
-                    // Leer texto en voz alta automáticamente
-                    if (this.speechEnabled) {
-                        this.leerEnVozAlta(texts[currentTextIndex]);
-                    }
+                    speechSynthesis.cancel(); // Detener lectura actual
+                    setTimeout(() => this.leerEnVozAlta(texts[currentTextIndex]), 50);
                 } else {
                     background.setTexture('titulo');
                     storyText.setText("Presiona para regresar al menú.")
@@ -120,7 +123,9 @@ class Capitulo1 extends Phaser.Scene {
                         .setOrigin(0.5)
                         .setPosition(400, 240)
                         .setInteractive()
-                        .on('pointerdown', () =>this.scene.start('MenuScene'));
+                        .on('pointerdown', () => this.scene.start('MenuScene'));
+
+                        speechSynthesis.cancel();
 
                     // Mostrar botón de regresar al menú
                     regresarMenu.setVisible(false);
@@ -130,12 +135,11 @@ class Capitulo1 extends Phaser.Scene {
     }
 
     leerEnVozAlta(texto) {
-        if (this.speechSynthesisUtterance) {
-            speechSynthesis.cancel(); // Detener cualquier lectura anterior
-        }
+        speechSynthesis.cancel();
 
         this.speechSynthesisUtterance = new SpeechSynthesisUtterance(texto);
-        this.speechSynthesisUtterance.lang = 'es-ES';  // Idioma español
+        this.speechSynthesisUtterance.lang = 'es-ES'; // Idioma español
+        this.speechSynthesisUtterance.onend = () => {};
         speechSynthesis.speak(this.speechSynthesisUtterance);
     }
 

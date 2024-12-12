@@ -21,19 +21,20 @@ closeChat.addEventListener('click', () => {
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 if (!SpeechRecognition) {
     respuesta.innerHTML += '<p class="error">Lo siento, tu navegador no es compatible con el ingreso de voz.<br> Usa los navegadores Chrome o Edge.</p>';
-} else {
-    const recognition = new SpeechRecognition();
-
-    recognition.onresult = (event) => {
-        const voiceInput = event.results[0][0].transcript;
-        textInput.value = voiceInput;
-        enviarConsulta();
-    };
-
-    micButton.addEventListener('click', () => {
-        recognition.start();
-    });
 }
+const recognition = new SpeechRecognition();
+
+recognition.onresult = (event) => {
+    console.log("si llego")
+    const voiceInput = event.results[0][0].transcript;
+    textInput.value = voiceInput;
+    enviarConsulta();
+};
+
+micButton.addEventListener('click', () => {
+    console.log("ggg")
+    recognition.start();
+});
 
 // Detectar Enter en el campo de texto
 textInput.addEventListener('keydown', (event) => {
