@@ -17,6 +17,7 @@ class Capitulo3 extends Phaser.Scene {
 
     create() {
         // Titulo capítulo 1
+        this.speechEnabled = true;
         this.add.image(0, 0, 'titulo').setOrigin(0);
         this.add.text(400, 240, 'Capítulo 3:', { font: 'italic 40px Arial', fill: 'black' }).setOrigin(0.5);
         this.add.text(400, 280, 'Buscar ayuda', { font: 'italic 24px Arial', fill: 'black' }).setOrigin(0.5);
@@ -42,7 +43,7 @@ class Capitulo3 extends Phaser.Scene {
             this.silenciarButton = this.add.image(740, 470, 'encendido')
                 .setOrigin(0.5)
                 .setInteractive()
-                .on('pointerdown', () => this.toggleSpeech());
+                .on('pointerdown', () => this.toggleSpeech(texts[currentTextIndex]));
 
             // Botón para regresar al menú
             const regresarMenu = this.add.image(740, 50, 'flecha')
@@ -51,6 +52,7 @@ class Capitulo3 extends Phaser.Scene {
                 .on('pointerdown', () => {
                     this.scene.start('MenuScene');
                     speechSynthesis.cancel();
+                    this.speechEnabled = true;
                 });
 
             // Agregar eventos de entrada
@@ -162,15 +164,23 @@ class Capitulo3 extends Phaser.Scene {
 
     leerEnVozAlta(texto) {
         speechSynthesis.cancel();
-
-        this.speechSynthesisUtterance = new SpeechSynthesisUtterance(texto);
+        if (this.speechEnabled) {
+            this.speechSynthesisUtterance = new SpeechSynthesisUtterance(texto);
         this.speechSynthesisUtterance.lang = 'es-ES'; // Idioma español
         this.speechSynthesisUtterance.onend = () => {};
         speechSynthesis.speak(this.speechSynthesisUtterance);
+        }else{
+            speechSynthesis.cancel(); // Detener lectura actual
+        }
+
+        /*this.speechSynthesisUtterance = new SpeechSynthesisUtterance(texto);
+        this.speechSynthesisUtterance.lang = 'es-ES'; // Idioma español
+        this.speechSynthesisUtterance.onend = () => {};
+        speechSynthesis.speak(this.speechSynthesisUtterance);*/
     }
 
     // Función para alternar la lectura en voz alta
-    toggleSpeech() {
+    toggleSpeech(texto) {
         this.speechEnabled = !this.speechEnabled;
 
         // Cambiar el texto del botón de silenciar
@@ -182,10 +192,12 @@ class Capitulo3 extends Phaser.Scene {
         } else {
             // Si la voz está activada, leer el texto actual
             if (this.speechEnabled && this.speechSynthesisUtterance) {
-                speechSynthesis.speak(this.speechSynthesisUtterance); // Reanudar la lectura
+                //speechSynthesis.speak(this.speechSynthesisUtterance); // Reanudar la lectura
+                setTimeout(() => this.leerEnVozAlta(texto), 50);
             }
         }
     }
 }
+
 
 export default Capitulo3;
