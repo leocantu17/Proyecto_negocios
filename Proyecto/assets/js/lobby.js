@@ -26,6 +26,8 @@ if (SpeechRecognition) {
     recognition.onresult = (event) => {
         const voiceInput = event.results[0][0].transcript;
         textInput.value = voiceInput;
+        /*respuesta.innerHTML += '<b>Tu: </b>' + textInput.value + '<br>';
+        textInput.value = '';*/
         enviarConsulta();
     };
 
@@ -35,7 +37,7 @@ if (SpeechRecognition) {
     });
 } else {
     respuesta.innerHTML += '<p class="error">Lo siento, tu navegador no es compatible con el ingreso de voz.<br> Usa los navegadores Chrome o Edge.</p>';
-} 
+}
 
 // Detectar Enter en el campo de texto
 textInput.addEventListener('keydown', (event) => {
