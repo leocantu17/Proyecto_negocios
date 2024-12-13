@@ -76,13 +76,14 @@ async function enviarConsulta() {
 
             // Crear el texto de la respuesta
             const respuestaTexto = document.createElement('p');
-            respuestaTexto.innerHTML = "<b>Gemini: </b>" + data.respuesta;
+            const textoLimpio = data.respuesta.replace(/[*\-_]| {2}/g, match => match === '  ' ? ' ' : '');
+            respuestaTexto.innerHTML = "<b>Gemini: </b>" + textoLimpio;
 
             // Crear el botón de recitar
             const recitar = document.createElement('button');
             recitar.classList.add('recitar-boton');
             recitar.textContent = "🔊";
-            recitar.addEventListener('click', () => recitarTexto(geminiRespuesta));
+            recitar.addEventListener('click', () => recitarTexto(textoLimpio));
 
             // Añadir texto y botón al contenedor
             respuestaContainer.appendChild(respuestaTexto);
